@@ -36,3 +36,4 @@ def get_movie_request_data():
         
     return lista_filmes
 
+__all__ = ['get_movie_request_data']
