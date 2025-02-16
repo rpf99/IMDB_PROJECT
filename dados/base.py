@@ -29,7 +29,7 @@ def get_movie_request_data():
             nota = movie.find_all(class_="ipc-rating-star--rating")[0].text
             titulo = movie.find_all(class_="ipc-title__text")[0].text.split(". ")[1]
                 
-            lista_filmes.append({"Nome": titulo, "Nota": nota, "Lançamento": ano,
+            lista_filmes.append({"Nome": titulo, "Nota": nota, "Lancamento": ano,
                                 "Duracao": duracao, "Classificacao": classificacao})
         except (IndexError, AttributeError):
             continue

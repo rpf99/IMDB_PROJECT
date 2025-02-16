@@ -15,4 +15,4 @@ connection = connect(
 
 cursor = connection.cursor()
 
-__all__ = ['cursos']
+__all__ = ['cursor']
