@@ -28,12 +28,22 @@ class Funcoes:
         self.cr.execute("SELECT AVG(nota) FROM imdb_table")
         resp = self.cr.fetchall()[0][0]
         return f'A média das notas é {round(resp,2)}'
-
+    
+    def mais_longo(self):
+        self.cr.execute("SELECT nome, duracao FROM imdb_table order by duracao desc" )
+        dur = self.cr.fetchall()[0]
+        return f'O filme mais longo é {dur[0]}, com {dur[1]}'
+    
+    def mais_curto(self):
+        self.cr.execute("SELECT nome, duracao FROM imdb_table order by duracao asc")
+        dur = self.cr.fetchall()[0]
+        return f'O filme mais curto é {dur[0]}, com {dur[1]}'
+    
 
     def buscar_nome(self, filme):
         self.cr.execute(f'SELECT * FROM imdb_table WHERE lower(nome) LIKE "%{filme.lower()}%"')
         resp = self.cr.fetchall() 
-        return f'Lamento, mas o filme {filme} nao foi encontrado' \
+        return f'Lamento, mas o filme {filme} não foi encontrado' \
             if len(resp) == 0 else f'Os filmes que possuem o nome {filme} são:\n {resp}'
     
 
