@@ -1,4 +1,4 @@
-from inclusao import adicao_tabela, cursor
+from execucao_dados.inclusao import adicao_tabela, cursor
 
 class Funcoes:
     
@@ -11,8 +11,21 @@ class Funcoes:
         resp = self.cr.fetchall()
         lt = [f'Nome: {x[0]}, Nota: {x[1]}, Lancamento: {x[2]}, Duracao: {x[3]}, Classificacao: {x[4]}' for x in resp]
 
-        return lt
+        return "\n".join(lt)
+
+
+    def melhor_opcao(self):
+        self.cr.execute("SELECT * FROM imdb_table ORDER BY nota DESC LIMIT 1")
+        resp = self.cr.fetchall()
+        return f'O filme com melhor nota é {resp[0][0]}, com {resp[0][1]} de nota'
     
+
+    def pior_opcao(self):
+        self.cr.execute("SELECT * FROM imdb_table ORDER BY nota LIMIT 1")
+        resp = self.cr.fetchall()
+        return f'O filme com a pior é {resp[0][0]}, com {resp[0][1]} de nota'
+
+
     def melhor_mais_recente(self):
         self.cr.execute("SELECT * FROM imdb_table ORDER BY lancamento DESC LIMIT 1")
         resp = self.cr.fetchall()
@@ -43,15 +56,21 @@ class Funcoes:
     def buscar_nome(self, filme):
         self.cr.execute(f'SELECT * FROM imdb_table WHERE lower(nome) LIKE "%{filme.lower()}%"')
         resp = self.cr.fetchall() 
+
         return f'Lamento, mas o filme {filme} não foi encontrado' \
-            if len(resp) == 0 else f'Os filmes que possuem o nome {filme} são:\n {resp}'
+            if len(resp) == 0 \
+        else f'Os filmes que possuem o nome {filme} são: {'\n'.join([x[0] for x in resp])}'
     
 
     def buscar_classificacao(self, classf):
+        
         self.cr.execute(f'SELECT * FROM imdb_table WHERE lower(classificacao) LIKE "%{classf.lower()}%"')
         resp = self.cr.fetchall() 
-        return f'Lamento, mas os filmes de classificação {classf} nao foram encontrados' \
-                if len(resp) == 0 else f'Os filmes de classificação {classf} são:\n {resp}'
+        print(resp)
+        aux = f'Lamento, mas os filmes de classificação {classf} nao foram encontrados' \
+                if len(resp) == 0 else f"Os filmes de classificação {classf} são: {'\n'.join([x[0] for x in resp])}"
+        
+        return aux
 
 
     def encerrar(self):
