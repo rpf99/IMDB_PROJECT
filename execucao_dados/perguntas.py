@@ -75,7 +75,6 @@ class Funcoes:
         return f"Lamento, mas o filme '{nome}' não foi encontrado"
 
 
-
     def buscar_classificacao(self, classf):
         filmes = self._executar_query(f'SELECT nome,lancamento from imdb_table WHERE lower(classificacao) LIKE "%{classf.lower()}%"')
         
@@ -84,6 +83,17 @@ class Funcoes:
                 [f'{x[0]} ({x[1]})' for x in filmes])}'
         
         return f"Lamento, mas a classificação '{classf}' não foi encontrada"
+
+
+    def media_classificacao(self):
+        filmes = self._executar_query(f'SELECT classificacao, AVG(nota) as media_classficacao from imdb_table group by classificacao')
+        return "\n".join([f'Classificação: {x[0]} Media Nota: {round(x[1],2)}' for x in filmes])
+
+    def filmes_decada(self, decada): 
+        filmes = self._executar_query(f'SELECT nome,lancamento, classificacao from imdb_table WHERE lancamento >= {decada} and lancamento < ({decada} + 10)')
+
+        return f'Nenhum filme da década de {decada} foi encontrado' \
+            if len(filmes) == 0 else f"Filmes lançados na decada de {decada}:\n{"\n".join([f'{x[0]} ({x[1]}) - {x[2]}' for x in filmes])}"
 
 
     def encerrar(self):
