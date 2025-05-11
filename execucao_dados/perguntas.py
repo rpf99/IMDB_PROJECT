@@ -23,7 +23,7 @@ class Funcoes:
         """ Retorna o filme com a maior nota"""
 
         resp = self._executar_query(
-            "SELECT nome,nota FROM imdb_table ORDER BY nota DESC limit 1", 
+            "SELECT nome,nota FROM imdb_table ORDER BY nota DESC", 
             find_all_values=False)
 
         return f"O filme com melhor nota é '{resp[0]}', com nota {resp[1]}"
@@ -33,7 +33,7 @@ class Funcoes:
         """ Retorna o filme com a menor nota"""
 
         resp = self._executar_query(
-            "SELECT nome,nota FROM imdb_table ORDER BY nota limit 1", 
+            "SELECT nome,nota FROM imdb_table ORDER BY nota ASC limit 1", 
             find_all_values=False)
         
         return f"O filme com a pior nota é '{resp[0]}', com nota {resp[1]}"
@@ -52,7 +52,7 @@ class Funcoes:
         """ Retorna o filme mais antigo"""
 
         filme = self._executar_query(
-            "SELECT nome,lancamento FROM imdb_table ORDER BY lancamento limit 1", 
+            "SELECT nome,lancamento FROM imdb_table ORDER BY lancamento ASC limit 1", 
             find_all_values=False)
         
         return f"O filme mais antigo é '{filme[0]}', lançado em {filme[1]}"

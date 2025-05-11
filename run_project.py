@@ -38,7 +38,7 @@ def busca_decada(func):
         print("Entrada inválida. Deveria ser uma decada depois ou igual a 1900")
 
 
-def main():
+def main():3
     func = Funcoes()
 
     opcoes = {
