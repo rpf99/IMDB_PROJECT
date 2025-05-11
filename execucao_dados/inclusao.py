@@ -5,11 +5,11 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
 
-from dados.base import get_movie_request_data
+from dados.captura_dados import get_movie_request_data
 from dados.conexao_mysql import cursor
 
 def adicao_tabela():
-
+    
     for x in get_movie_request_data():
 
         cursor.execute(

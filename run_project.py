@@ -33,7 +33,7 @@ def busca_decada(func):
         decada = int(input("Digite a decada: "))
         if decada % 10 == 0 and decada >= 1900:
             return func.filmes_decada(decada)  
-
+        
     except ValueError:
         print("Entrada inválida. Deveria ser uma decada depois ou igual a 1900")
 
