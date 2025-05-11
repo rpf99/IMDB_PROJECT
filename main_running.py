@@ -3,7 +3,6 @@ from time import sleep
 
 
 def obter_resposta():
-
     print("\n1 - Lista dos Filmes\n2 - Melhor Nota\n3 - Pior Nota\n4 - Melhor Mais Antigo\n5 - Melhor Mais Recente\n6 - Média das Notas\n7 - Mais Longo\n8 - Mais Curto\n9 - Buscar Filme\n10 - Buscar Classificação\n11 - Filmes por Década\n12 - Média por Classificação\n13 - Encerrar\n")
 
     try:

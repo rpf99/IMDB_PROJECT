@@ -6,6 +6,7 @@ diretorio = os.path.join(os.path.dirname(__file__).replace("dados", ""), 'base_i
 
 load_dotenv(diretorio)
 
+# Efetuar a conexão com base de dados do MySQL
 connection = connect(
   host=os.getenv("DB_HOST"),
   user=os.getenv("DB_USER"),
